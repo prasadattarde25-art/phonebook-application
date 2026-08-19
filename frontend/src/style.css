@@ -294,3 +294,34 @@ code {
     border-right-color: var(--border);
   }
 }
+/* ================================
+   Phonebook Form Input Styling
+   ================================ */
+
+input {
+  background-color: #ffffff;
+  color: #222222;
+  border: 1px solid #cccccc;
+  font-size: 16px;
+  font-weight: 500;
+}
+
+input::placeholder {
+  color: #333333;
+  opacity: 1;
+  font-weight: 500;
+}
+
+input:focus {
+  color: #222222;
+  background-color: #ffffff;
+  border-color: #333333;
+  outline: none;
+}
+
+/* Make form labels dark and bold */
+label {
+  color: #222222;
+  font-weight: 700;
+  font-size: 16px;
+}
