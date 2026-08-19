@@ -575,64 +575,25 @@ The Docker images and persistent database volume remain available for the next s
 
 ---
 
-# 18. Engineering Practices Demonstrated
 
-This project demonstrates several practical software-engineering concepts:
-
-### Separation of Concerns
-
-Frontend, backend, and database responsibilities are separated into independent services.
-
-### RESTful API Design
-
-The backend follows standard HTTP methods for CRUD operations.
-
-### ORM-Based Database Access
-
-SQLAlchemy provides an abstraction layer between Python application code and PostgreSQL.
-
-### API Validation
-
-FastAPI provides request validation and automatic OpenAPI documentation.
-
-### Containerization
-
-Docker provides consistent application environments across development machines.
-
-### Service Orchestration
-
-Docker Compose manages the frontend, backend, database, network, and persistent storage.
-
-### Environment-Based Configuration
-
-Database credentials and configuration are externalized through environment variables.
-
----
-
-# 19. Future Enhancements
+# 18. Future Enhancements
 
 The current architecture can be extended with:
 
-* Contact search
-* Pagination
-* Sorting
 * Advanced filtering
 * Authentication and authorization
-* Role-based access control
 * Unit testing
 * Integration testing
-* Centralized error handling
 * Logging
 * CI/CD pipeline
 * Cloud deployment
-* API rate limiting
-* Production monitoring
+
 
 These improvements can be introduced without changing the fundamental frontend → backend → database architecture.
 
 ---
 
-# 20. Project Deliverables
+# 19. Project Deliverables
 
 The project includes:
 
@@ -655,7 +616,7 @@ The project includes:
 
 ---
 
-# 21. Final Architecture
+# 20. Final Architecture
 
 ```text
                          USER
