@@ -1,12 +1,27 @@
-from pydantic import BaseModel, EmailStr, Field, ConfigDict
 from datetime import datetime
+
+from pydantic import BaseModel, ConfigDict, EmailStr, Field
 
 
 class ContactBase(BaseModel):
-    name: str = Field(..., max_length=255)
-    phone_number: str = Field(..., min_length=7, max_length=20)
+    name: str = Field(
+        ...,
+        min_length=2,
+        max_length=255
+    )
+
+    phone_number: str = Field(
+        ...,
+        min_length=7,
+        max_length=20
+    )
+
     email: EmailStr | None = None
-    address: str | None = None
+
+    address: str | None = Field(
+        default=None,
+        max_length=500
+    )
 
 
 class ContactCreate(ContactBase):

@@ -12,19 +12,75 @@ router = APIRouter(
 )
 
 
-# GET all contacts
-@router.get("/", response_model=list[ContactResponse])
-def get_contacts(db: Session = Depends(get_db)):
-    contacts = db.query(Contact).all()
-    return contacts
+# --------------------------------------------------
+# GET contacts - Search + Pagination
+# --------------------------------------------------
+
+@router.get("/")
+def get_contacts(
+    search: str | None = None,
+    page: int = 1,
+    limit: int = 10,
+    db: Session = Depends(get_db)
+):
+    # Validate pagination parameters
+    if page < 1:
+        raise HTTPException(
+            status_code=400,
+            detail="Page must be greater than 0"
+        )
+
+    if limit < 1 or limit > 100:
+        raise HTTPException(
+            status_code=400,
+            detail="Limit must be between 1 and 100"
+        )
+
+    # Base query
+    query = db.query(Contact)
+
+    # Search
+    if search:
+        query = query.filter(
+            Contact.name.ilike(f"%{search}%")
+        )
+
+    # Total records
+    total = query.count()
+
+    # Calculate offset
+    offset = (page - 1) * limit
+
+    # Get paginated contacts
+    contacts = (
+        query
+        .offset(offset)
+        .limit(limit)
+        .all()
+    )
+
+    # Calculate total pages
+    pages = (total + limit - 1) // limit
+
+    return {
+        "items": contacts,
+        "total": total,
+        "page": page,
+        "limit": limit,
+        "pages": pages
+    }
 
 
-# POST create a new contact
+# --------------------------------------------------
+# POST - Create contact
+# --------------------------------------------------
+
 @router.post("/", response_model=ContactResponse)
 def create_contact(
     contact: ContactCreate,
     db: Session = Depends(get_db)
 ):
+    # Check duplicate phone
     existing_phone = db.query(Contact).filter(
         Contact.phone_number == contact.phone_number
     ).first()
@@ -35,6 +91,7 @@ def create_contact(
             detail="Phone number already exists"
         )
 
+    # Check duplicate email
     if contact.email:
         existing_email = db.query(Contact).filter(
             Contact.email == contact.email
@@ -60,7 +117,10 @@ def create_contact(
     return new_contact
 
 
-# GET one contact
+# --------------------------------------------------
+# GET single contact
+# --------------------------------------------------
+
 @router.get("/{contact_id}", response_model=ContactResponse)
 def get_contact(
     contact_id: int,
@@ -79,7 +139,10 @@ def get_contact(
     return contact
 
 
-# PUT update contact
+# --------------------------------------------------
+# PUT - Update contact
+# --------------------------------------------------
+
 @router.put("/{contact_id}", response_model=ContactResponse)
 def update_contact(
     contact_id: int,
@@ -96,6 +159,32 @@ def update_contact(
             detail="Contact not found"
         )
 
+    # Check duplicate phone
+    existing_phone = db.query(Contact).filter(
+        Contact.phone_number == updated_contact.phone_number,
+        Contact.id != contact_id
+    ).first()
+
+    if existing_phone:
+        raise HTTPException(
+            status_code=400,
+            detail="Phone number already exists"
+        )
+
+    # Check duplicate email
+    if updated_contact.email:
+        existing_email = db.query(Contact).filter(
+            Contact.email == updated_contact.email,
+            Contact.id != contact_id
+        ).first()
+
+        if existing_email:
+            raise HTTPException(
+                status_code=400,
+                detail="Email already exists"
+            )
+
+    # Update fields
     contact.name = updated_contact.name
     contact.phone_number = updated_contact.phone_number
     contact.email = updated_contact.email
@@ -106,7 +195,11 @@ def update_contact(
 
     return contact
 
-# DELETE contact
+
+# --------------------------------------------------
+# DELETE - Delete contact
+# --------------------------------------------------
+
 @router.delete("/{contact_id}")
 def delete_contact(
     contact_id: int,
