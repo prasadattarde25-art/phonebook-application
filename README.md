@@ -6,6 +6,21 @@ The application provides a complete contact-management workflow with RESTful CRU
 
 ---
 
+##   Project Demo
+
+▶️ **[Watch the Complete Project Demo](https://www.youtube.com/watch?v=6afFIaAIQRk)**
+
+The demo covers:
+- Application UI
+- CRUD operations
+- Search and pagination
+- REST APIs
+- Swagger / OpenAPI
+- Docker
+- ngrok public URL
+
+---
+
 ## 1. Project Overview
 
 The application is designed as a three-tier architecture:
