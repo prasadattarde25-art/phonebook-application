@@ -452,7 +452,7 @@ For demonstration purposes, the Phonebook Application is currently accessible th
 
 -----
 
-# 13. API Testing
+# 14. API Testing
 
 The REST APIs can be tested through Swagger UI.
 
@@ -505,7 +505,7 @@ DELETE /contacts/{id}
 
 ---
 
-# 14. End-to-End Testing
+# 15. End-to-End Testing
 
 The application should be tested from both the API and UI layers.
 
@@ -539,7 +539,7 @@ The application should be tested from both the API and UI layers.
 
 ---
 
-# 15. Docker Troubleshooting
+# 16. Docker Troubleshooting
 
 Check running containers:
 
@@ -573,7 +573,7 @@ docker compose logs -f backend
 
 ---
 
-# 16. Database Persistence
+# 17. Database Persistence
 
 PostgreSQL uses a Docker named volume for persistent storage.
 
@@ -605,7 +605,7 @@ docker compose down -v
 
 ---
 
-# 17. Stopping the Application
+# 18. Stopping the Application
 
 Stop the application:
 
@@ -618,7 +618,7 @@ The Docker images and persistent database volume remain available for the next s
 ---
 
 
-# 18. Future Enhancements
+# 19. Future Enhancements
 
 The current architecture can be extended with:
 
@@ -635,7 +635,7 @@ These improvements can be introduced without changing the fundamental frontend â
 
 ---
 
-# 19. Project Deliverables
+# 20. Project Deliverables
 
 The project includes:
 
@@ -658,7 +658,7 @@ The project includes:
 
 ---
 
-# 20. Final Architecture
+# 21. Final Architecture
 
 ```text
                          USER
