@@ -427,8 +427,6 @@ http://localhost:8000/openapi.json
 
 ---
 
----
-
 # 13. Public Access with ngrok
 
 For demonstration and testing purposes, the Phonebook Application can be exposed to the internet using **ngrok**.
@@ -439,18 +437,18 @@ ngrok creates a secure public tunnel to the locally running application and prov
 
 After starting the application, run:
 
-```powershell
+``-powershell
 
 ngrok http 5173
------
 
 For demonstration purposes, the Phonebook Application is currently accessible through the following public URL:
 
 🔗 **[Open Phonebook Application](https://quarry-bankroll-juicy.ngrok-free.dev/)**
 
-> **Note:** This is a temporary ngrok URL and is accessible only while the ngrok tunnel is running. The URL may change when the tunnel is restarted.
+ **Note:** This is a temporary ngrok URL and is accessible only while the ngrok tunnel is running. The URL may change when the tunnel is restarted.
+---
 
------
+
 
 # 14. API Testing
 
@@ -460,7 +458,6 @@ Open:
 
 ```text
 http://localhost:8000/docs
-```
 
 ### Create Contact
 
