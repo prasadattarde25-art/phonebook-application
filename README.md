@@ -301,6 +301,8 @@ db
 This allows services to communicate through the Docker Compose network without depending on `localhost` between containers.
 
 ---
+---
+
 
 # 9. Environment Configuration
 
@@ -424,6 +426,31 @@ http://localhost:8000/openapi.json
 ```
 
 ---
+
+---
+
+# 13. Public Access with ngrok
+
+For demonstration and testing purposes, the Phonebook Application can be exposed to the internet using **ngrok**.
+
+ngrok creates a secure public tunnel to the locally running application and provides a public HTTPS URL.
+
+### Start ngrok
+
+After starting the application, run:
+
+```powershell
+
+ngrok http 5173
+-----
+
+For demonstration purposes, the Phonebook Application is currently accessible through the following public URL:
+
+🔗 **[Open Phonebook Application](https://quarry-bankroll-juicy.ngrok-free.dev/)**
+
+> **Note:** This is a temporary ngrok URL and is accessible only while the ngrok tunnel is running. The URL may change when the tunnel is restarted.
+
+-----
 
 # 13. API Testing
 
